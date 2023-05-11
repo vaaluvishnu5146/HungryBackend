@@ -1,0 +1,8 @@
+BACKEND:
+STEP 1: npm init
+STEP 2: INSTALL PACKAGES
+STEP 3: CREATE inde.js file and configure NODESERVER
+STEP 4: CONFIGURE DATABASE -> create dbconfig.js file and add code
+STEP 5: CONFIGURE ENV variables
+STEP 6: Reading creds from env.
+STEP 7: Create respostive controllers and models
