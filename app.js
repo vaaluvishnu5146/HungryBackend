@@ -11,5 +11,6 @@ appserver.use(
   "/api/restaurants",
   require("./Controllers/Restaurants.controller")
 );
+appserver.use("/api/food", require("./Controllers/Food.controller"));
 
 module.exports = appserver;

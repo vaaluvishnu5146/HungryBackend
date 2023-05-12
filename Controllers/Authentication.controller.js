@@ -111,4 +111,47 @@ AuthRouter.get("/getUser/:id", async function (req, res, next) {
   }
 });
 
+/**
+ * METHOD = POST
+ * PATH = /getUser/:id
+ */
+AuthRouter.post("/signin", async function (req, res, next) {
+  const { email, password } = req.body;
+  try {
+    const response = await AuthModel.findOne({
+      "contactDetails.primaryEmail": email,
+      password: password,
+    });
+    if (response && response._id) {
+      res.status(200).json({
+        success: true,
+        message: "User signin successfull!!!",
+        data: response,
+      });
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "Account not found!!!",
+      });
+    }
+  } catch (error) {
+    if (
+      (error && error.name && error.name === "ValidationError") ||
+      error.name === "CastError"
+    ) {
+      res.status(400).json({
+        success: false,
+        message: error._message,
+        error: error.message,
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Internal server error!!!",
+        error: error,
+      });
+    }
+  }
+});
+
 module.exports = AuthRouter;
